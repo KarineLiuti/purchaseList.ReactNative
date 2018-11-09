@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import {
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  Text,
+  View
 } from 'react-native';
 import Items from './Items';
 import axios from 'axios';
@@ -19,9 +21,14 @@ export default class ListItems extends Component {
   }
   render() {
     return (
-      <ScrollView style={styles.itemsContent}>
-        { this.state.listItems.map(item => (<Items key={item.titulo} listItem={item} />))}
-      </ScrollView>
+      <View>
+        <View style={styles.toolBar}>
+          <Text style={styles.toolBarTitle}>Purchase List</Text>
+        </View>
+          <ScrollView style={styles.itemsContent}>
+            { this.state.listItems.map(item => (<Items key={item.titulo} listItem={item} />))}
+          </ScrollView>
+      </View>
     );
   }
 }
@@ -29,6 +36,21 @@ export default class ListItems extends Component {
 const styles = StyleSheet.create({
   itemsContent: {
     backgroundColor: '#f9ffff'
+  },
+  toolBar: { 
+    height: 50, 
+    backgroundColor: '#1075D7',
+    marginBottom: 2, 
+    elevation: 2, 
+    flexDirection: 'row', 
+    padding: 5 
+  },
+  toolBarTitle: { 
+    flex: 1, 
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    color: '#FFF',
+    fontSize: 16
   }
 });
 

@@ -3,8 +3,10 @@ import {
   Image,
   StyleSheet,
   Text,
-  View
+  View,
+  Platform
 } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class Items extends Component {
   render() {
@@ -16,8 +18,14 @@ export default class Items extends Component {
         <View style={styles.itemDescriptions}>
           <Text style={styles.itemTitle}>{this.props.listItem.titulo}</Text>
           <Text style={styles.itemPrice}>$ {this.props.listItem.valor}</Text>
-          <Text>{this.props.listItem.local_anuncio}</Text>
-          <Text>{this.props.listItem.data_publicacao}</Text>
+          <View style={styles.descriptionWithIcon}>
+            <Icon name={'location-on'} color="#FF5300" size={20} /> 
+            <Text style={styles.itemDetail}>{this.props.listItem.local_anuncio}</Text>
+          </View>
+          <View style={styles.descriptionWithIcon}>
+            <Icon name={'date-range'} color="#FF5300" size={20} /> 
+            <Text style={styles.itemDetail}>{this.props.listItem.data_publicacao}</Text>
+          </View>
         </View>
       </View>
     );
@@ -40,16 +48,28 @@ const styles = StyleSheet.create({
     flex: 1
   },
   itemTitle: {
-    fontWeight: 'bold',
+    fontWeight: 'normal',
     fontSize: 16,
-    color: 'blue'
+    color: '#368ee0'
   },
   itemPhoto: {
     width: 102,
     height: 102
   },
   itemPrice: {
-    fontSize: 16,
-    fontWeight: 'bold'
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#075AAB'
+  },
+  descriptionWithIcon: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginLeft: -5,
+    marginTop: 5
+  },
+  itemDetail: {
+    paddingTop: 2,
+    marginLeft: 3
   }
 });
